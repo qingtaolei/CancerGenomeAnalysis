@@ -1,0 +1,10 @@
+
+docker run -it -v /spindel:/home/tao/taoqing/projects/TCGAData/esc/spindel  broadinstitute/oncotator /bin/bash
+
+docker run -it -v /mnt/MainArray/taoqing/projects/TCGAData/esc/spindel:/spindel  broadinstitute/oncotator:1.9.0.0 /bin/bash
+
+docker exec -it 1c9bc026f3f5 /bin/bash
+
+ls *.tsv | awk '{sub(/.tsv/,"",$0);print "~/oncotator_venv/bin/oncotator -v --db-dir /spindel/oncotator_v1_ds_April052016/  /spindel/somatic_PIndel20180516/somatic_filter1/"$0".tsv "$0".maf hg19"}'
+
+nohup ~/oncotator_venv/bin/oncotator -v --db-dir /spindel/oncotator_v1_ds_April052016/  /spindel/mc3.v0.2.8.PUBLIC.BRCA.func.rmdup.position.tsv mc3.v0.2.8.PUBLIC.BRCA.func.rmdup.position.tsv.maf hg19 &
